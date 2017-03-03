@@ -8,6 +8,7 @@ var mongoose = require('mongoose');
 var session = require('express-session');
 var passport = require('passport');
 var flash = require('connect-flash');
+var validator = require('express-validator');
 
 var index = require('./routes/index');
 
@@ -24,9 +25,14 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(validator());
 app.use(cookieParser());
-app.use(session({secret: 'this is a very secter message',resave:false, saveUninitialized:false}));
+app.use(session({ secret: 'this is a very secter message', resave: false, saveUninitialized: false }));
 app.use(flash());
+app.use(function(req, res, next) {
+    res.locals.messages = req.flash();
+    next();
+});
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));

@@ -7,6 +7,13 @@
 <body>
 
 	<form action="/signup" method="post">
+	<% if(messages){ %>
+   <div class="alert">
+   <%= messages %>
+   </div>
+   <% }%>
+
+
 		<p>
 			<label for="username">Username</label>
 			<input id="username" name="email" type="text" !required>
