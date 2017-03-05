@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
     });
 
 });
-router.get('/signup', function(req, res) {
+router.get('/signup', function(req, res, next) {
     var messages = req.flash('error');
     res.render('user/signup', { csrfToken: req.csrfToken(), messages: messages, hasErrors: messages.length > 0 });
 });
@@ -25,7 +25,7 @@ router.post('/signup', passport.authenticate('local.signup', {
     failureRedirect: '/signup',
     failureFlash: true
 }));
-router.get('/signin', function(req, res) {
+router.get('/signin', function(req, res, next) {
     var messages = req.flash('error');
     res.render('user/signin', { csrfToken: req.csrfToken(), messages: messages, hasErrors: messages.length > 0 });
 });
@@ -39,7 +39,7 @@ router.post('/signin', passport.authenticate('local.signin', {
 router.get('/profile', isLoggedin, function(req, res, next) {
     res.render('user/profile');
 });
-router.get('/logout', function(req, res, next) {
+router.get('/logout', isLoggedin, function(req, res, next) {
     req.logout();
     res.redirect('/');
 })

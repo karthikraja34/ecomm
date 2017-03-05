@@ -70,6 +70,24 @@
 			</li>
 		</ul>
 		</div>
+		<nav id="primary_nav_wrap">
+<ul>
+
+  <li><a href="#">User 1</a>
+    <ul>
+<% if(logi) { %>
+
+<li><a href="/profile" >Profile</a></li>
+<li><a href="/logout" >Logout</a></li>
+<% } else { %>
+
+<li><a href="/signup" >Sign up</a></li>
+<li><a href="/signin" >Sign in</a></li>
+<% } %>
+    </ul>
+  </li>
+</ul>
+</nav>
 		<div class="h_search">
     		<form>
     			<input type="text" value="">
@@ -96,6 +114,7 @@
 				<li><a href="sale.html">vintage</a></li> |
 				<li><a href="service.html">services</a></li> |
 				<li><a href="contact.html">Contact us</a></li>
+				
 			</ul>
 		</div>
 		<div class="top-nav">

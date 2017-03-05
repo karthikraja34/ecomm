@@ -35,7 +35,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 
+app.use(function(req, res, next) {
+    app.locals.logi = req.isAuthenticated();;
+    console.log(logi);
+    next();
+});
+// var username = req.session.user && req.session.user.username ? req.session.user.username : null;
 
+// res.render('index', { title: 'My title', username: username });
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
