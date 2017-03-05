@@ -7,7 +7,7 @@
 <body>
 
 	<form action="/signup" method="post">
-	<% if(messages){ %>
+	<% if(hasErrors){ %>
    <div class="alert">
    <%= messages %>
    </div>

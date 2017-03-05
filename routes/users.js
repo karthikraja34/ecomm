@@ -5,17 +5,7 @@ var csrf = require('csurf');
 var csrfProtection = csrf();
 router.use(csrfProtection);
 var passport = require('passport')
-var Product = require('../models/product');
 
-
-/* GET home page. */
-router.get('/', function(req, res, next) {
-    Product.find(function(err, docs) {
-
-        res.render('index', { title: 'Express', products: docs });
-    });
-
-});
 router.get('/signup', function(req, res) {
     var messages = req.flash('error');
     res.render('user/signup', { csrfToken: req.csrfToken(), messages: messages, hasErrors: messages.length > 0 });
@@ -52,4 +42,3 @@ function isLoggedin(req, res, next) {
     }
     res.redirect('/');
 }
-module.exports = router;

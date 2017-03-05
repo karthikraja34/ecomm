@@ -6,7 +6,13 @@
 </head>
 <body>
 
-	<form action="/signup" method="post">
+	<form action="/signin" method="post">
+	<% if(hasErrors){ %>
+   <div class="alert">
+   <%= messages %>
+   </div>
+   <% }%>
+	<form action="/signin" method="post">
 		<p>
 			<label for="username">Username</label>
 			<input id="username" name="email" type="text" !required>
@@ -23,6 +29,6 @@
 		</p>
 	</form>
 	<script src="http://code.jquery.com/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
-	<script src="js/signup.js" type="text/javascript" charset="utf-8"></script>
+	
 </body>
 </html>

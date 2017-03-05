@@ -21,11 +21,12 @@ passport.use('local.signup', new LocalStrategy({
         req.checkBody('password', 'Invalid Password').notEmpty().isLength({ min: 6 });
         var errors = req.validationErrors();
         if (errors) {
-            var message = [];
+            console.log(errors);
+            var messages = [];
             errors.forEach(function(error) {
-                message.push(error.msg);
+                messages.push(error.msg);
             });
-            return done(null, false, req.flash('error', message));
+            return done(null, false, req.flash('error', messages));
         }
 
         User.findOne({ 'email': email }, function(err, user) {
@@ -55,14 +56,24 @@ passport.use('local.signup', new LocalStrategy({
 // we are using named strategies since we have one for login and one for signup
 // by default, if there was no name, it would just be called 'local'
 
-passport.use('local-login', new LocalStrategy({
+passport.use('local.signin', new LocalStrategy({
         // by default, local strategy uses username and password, we will override with phone
         usernameField: 'email',
         passwordField: 'password',
         passReqToCallback: true // allows us to pass back the entire request to the callback
     },
     function(req, email, password, done) { // callback with phone and password from our form
-
+        req.checkBody('email', 'Invalid Email').notEmpty().isEmail();
+        req.checkBody('password', 'Invalid Password').notEmpty();
+        var errors = req.validationErrors();
+        if (errors) {
+            console.log(errors);
+            var messages = [];
+            errors.forEach(function(error) {
+                messages.push(error.msg);
+            });
+            return done(null, false, req.flash('error', messages));
+        }
         // find a user whose phone is the same as the forms phone
         // we are checking to see if the user trying to login already exists
         User.findOne({ 'email': email }, function(err, user) {
@@ -72,11 +83,11 @@ passport.use('local-login', new LocalStrategy({
 
             // if no user is found, return the message
             if (!user)
-                return done(null, false, req.flash('loginMessage', 'No user found.')); // req.flash is the way to set flashdata using connect-flash
+                return done(null, false, { message: 'No usr found' }); // req.flash is the way to set flashdata using connect-flash
 
             // if the user is found but the password is wrong
-            if (!user.validPassword(password))
-                return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.')); // create the loginMessage and save it to session as flashdata
+            if (!user.validPasword(password))
+                return done(null, false, { message: 'Uername or  Password is wrong' }); // create the loginMessage and save it to session as flashdata
 
             // all is well, return successful user
             return done(null, user);

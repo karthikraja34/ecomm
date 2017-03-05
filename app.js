@@ -11,7 +11,6 @@ var flash = require('connect-flash');
 var validator = require('express-validator');
 
 var index = require('./routes/index');
-
 var app = express();
 
 mongoose.connect('localhost:27017/ecomm');
@@ -29,10 +28,7 @@ app.use(validator());
 app.use(cookieParser());
 app.use(session({ secret: 'this is a very secter message', resave: false, saveUninitialized: false }));
 app.use(flash());
-app.use(function(req, res, next) {
-    res.locals.messages = req.flash();
-    next();
-});
+
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
