@@ -1,0 +1,202 @@
+<!--A Design by W3layouts
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Free Aditii Website Template | Home :: w3layouts</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet' type='text/css'>
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<!-- start slider -->		
+	<link href="css/slider.css" rel="stylesheet" type="text/css" media="all" />
+	<script type="text/javascript" src="js/modernizr.custom.28468.js"></script>
+	<script type="text/javascript" src="js/jquery.cslider.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			$('#da-slider').cslider();
+		});
+	</script>
+		<!-- Owl Carousel Assets -->
+		<link href="css/owl.carousel.css" rel="stylesheet">
+		     <!-- Owl Carousel Assets -->
+		    <!-- Prettify -->
+		    <script src="js/owl.carousel.js"></script>
+		        <script>
+		    $(document).ready(function() {
+		
+		      $("#owl-demo").owlCarousel({
+		        items : 4,
+		        lazyLoad : true,
+		        autoPlay : true,
+		        navigation : true,
+			    navigationText : ["",""],
+			    rewindNav : false,
+			    scrollPerPage : false,
+			    pagination : false,
+    			paginationNumbers: false,
+		      });
+		
+		    });
+		    </script>
+		   <!-- //Owl Carousel Assets -->
+		<!-- start top_js_button -->
+		<script type="text/javascript" src="js/move-top.js"></script>
+		<script type="text/javascript" src="js/easing.js"></script>
+		   <script type="text/javascript">
+				jQuery(document).ready(function($) {
+					$(".scroll").click(function(event){		
+						event.preventDefault();
+						$('html,body').animate({scrollTop:$(this.hash).offset().top},1200);
+					});
+				});
+			</script>
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.3.2/css/bulma.min.css" />
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<!-- start header -->
+<div class="header_bg">
+<div class="wrap">
+	<div class="header">
+		<div class="logo">
+			<a href="index.html"><img src="images/logo.png" alt=""/> </a>
+		</div>
+		<div class="h_icon">
+		<ul class="icon1 sub-icon1">
+			<li><a class="active-icon c1" href="#"><i>$300</i></a>
+				<ul class="sub-icon1 list">
+					<li><h3>shopping cart empty</h3><a href=""></a></li>
+					<li><p>if items in your wishlit are missing, <a href="contact.html">contact us</a> to view them</p></li>
+				</ul>
+			</li>
+		</ul>
+		</div>
+		<div class="h_search">
+    		<form>
+    			<input type="text" value="">
+    			<input type="submit" value="">
+    		</form>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+</div>
+<hr/>
+<% if(products) { %>
+
+<section class="hero is-primary">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+   SHOPPING CART
+      </h1>
+
+      
+    </div>
+  </div>
+</section>
+<hr>
+
+  <% products.forEach(function(product) { %>
+<nav class="level">
+  <div class="level-item has-text-centered">
+    <div>
+      <i class="fa fa-times" aria-hidden="true"></i>
+    </div>
+  </div>
+  <div class="level-item has-text-centered">
+    <div>
+      <img class="image is-128x128" src="<%= product.item.imagePath %>">
+    </div>
+  </div>
+  <div class="level-item has-text-centered">
+    <div>
+      <p class="title"><%= product.item.title %></p>
+    </div>
+  </div>
+  <div class="level-item has-text-centered">
+    <div>
+      <p class="title"><%= product.qty %></p>
+     
+    </div>
+  </div>
+  <div class="level-item has-text-centered">
+    <div>
+      <p class="title"><%= product.price %>  </p>
+     
+    </div>
+  </div>
+</nav><hr>
+<% }); %>
+<nav class="level is-primary">
+   
+  <div class="level-item has-text-centered">
+    <div>
+      <p class="title">Total</p>
+     
+    </div>
+  </div>
+  <div class="level-item has-text-right ">
+    <div>
+      <p class="title"><%= totalPrice %> </p>
+     
+    </div>
+  </div>
+</nav><hr>
+<section class="container">
+	<div class="is-pulled-right">
+		<a class="button is-medium">
+  Continue to Shop
+</a>
+<a class="button is-primary is-medium">
+ Proceed to checkout
+</a>
+	</div>
+</section><br>
+
+
+
+<% }else{ %>
+
+<h1>  Hi I m Empty</h1>
+<%} %>
+
+
+
+<!-- start footer -->
+<div class="footer_bg1">
+<div class="wrap">
+	<div class="foote">
+		<!-- scroll_top_btn -->
+	    <script type="text/javascript">
+			$(document).ready(function() {
+			
+				var defaults = {
+		  			containerID: 'toTop', // fading element id
+					containerHoverID: 'toTopHover', // fading element hover id
+					scrollSpeed: 1200,
+					easingType: 'linear' 
+		 		};
+				
+				
+				$().UItoTop({ easingType: 'easeOutQuart' });
+				
+			});
+		</script>
+		 <a href="#" id="toTop" style="display: block;"><span id="toTopHover" style="opacity: 1;"></span></a>
+		<!--end scroll_top_btn -->
+		<div class="copy">
+			<p class="link">&copy;  All rights reserved | Template by&nbsp;&nbsp;<a href="http://w3layouts.com/"> W3Layouts</a></p>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+</div>
+</body>
+</html>

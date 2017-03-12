@@ -12,7 +12,7 @@ var validator = require('express-validator');
 
 var index = require('./routes/index');
 var app = express();
-
+var MongoStore = require('connect-mongo')(session);
 mongoose.connect('localhost:27017/ecomm');
 require('./config/passport');
 // view engine setup
@@ -26,20 +26,32 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(validator());
 app.use(cookieParser());
-app.use(session({ secret: 'this is a very secter message', resave: false, saveUninitialized: false }));
+app.use(session({
+    secret: 'this is a very secter message',
+    resave: false,
+    saveUninitialized: false,
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
+    cookie: { maxAge: 180 * 60 * 1000 }
+}));
 app.use(flash());
 
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
-
 app.use(function(req, res, next) {
-    app.locals.logi = req.isAuthenticated();;
-    console.log(logi);
+
+    app.locals.session = req.session;
+    console.log(session);
+
+    app.locals.logi = req.isAuthenticated();
+    //  var username = req.session.user && req.session.user.username ? req.session.user.username : null;
     next();
 });
+
+
+app.use('/', index);
+
 // var username = req.session.user && req.session.user.username ? req.session.user.username : null;
 
 // res.render('index', { title: 'My title', username: username });
