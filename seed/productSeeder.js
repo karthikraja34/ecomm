@@ -2,7 +2,8 @@ var Product = require('../models/product.js');
 var mongoose = require('mongoose');
 
 
-mongoose.connect('localhost:27017/ecomm');
+mongoose.connect('mongodb://karthik:iamkr@ds060009.mlab.com:60009/ecomm');
+// mongoose.connect('localhost:27017/ecomm');
 var products = [
     new Product({
         imagePath: 'images/pic3.jpg',

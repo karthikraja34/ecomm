@@ -13,9 +13,9 @@ var validator = require('express-validator');
 var index = require('./routes/index');
 var app = express();
 var MongoStore = require('connect-mongo')(session);
-mongoose.connect('localhost:27017/ecomm');
+// mongoose.connect('localhost:27017/ecomm');
 
-// mongoose.connect('mongodb://karthik:iamkr@ds060009.mlab.com:60009/ecomm');
+mongoose.connect('mongodb://karthik:iamkr@ds060009.mlab.com:60009/ecomm');
 require('./config/passport');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
