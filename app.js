@@ -14,6 +14,8 @@ var index = require('./routes/index');
 var app = express();
 var MongoStore = require('connect-mongo')(session);
 mongoose.connect('localhost:27017/ecomm');
+
+// mongoose.connect('mongodb://karthik:iamkr@ds060009.mlab.com:60009/ecomm');
 require('./config/passport');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -42,10 +44,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(function(req, res, next) {
 
     app.locals.session = req.session;
-
-
     app.locals.logi = req.isAuthenticated();
-    //  var username = req.session.user && req.session.user.username ? req.session.user.username : null;
+    app.locals.username = false;
+    if (req.user) {
+
+        app.locals.username = req.user.email;
+    }
+    console.log(req.user);
     next();
 });
 

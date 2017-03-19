@@ -60,7 +60,7 @@ router.post('/signin', passport.authenticate('local.signin', {
 
 
 router.get('/profile', isLoggedin, function(req, res, next) {
-    order.find({ user: req.user }, function(err, orders) {
+    Order.find({ user: req.user }, function(err, orders) {
         if (err)
             return res.write("Error!!");
         var cart;
@@ -69,6 +69,7 @@ router.get('/profile', isLoggedin, function(req, res, next) {
             order.items = cart.generateArray();
         });
     });
+    res.render('user/profile');
 });
 router.get('/logout', isLoggedin, function(req, res, next) {
     req.logout();
@@ -85,8 +86,9 @@ router.get('/add-to-cart/:id', function(req, res, next) {
         }
         cart.add(product, product.id);
         req.session.cart = cart;
+        console.log(req.session);
+        res.redirect('back');
 
-        res.redirect('/');
     });
 });
 router.get('/reduce/:id', function(req, res, next) {

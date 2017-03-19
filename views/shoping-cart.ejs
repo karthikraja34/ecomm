@@ -69,11 +69,20 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		</div>
 		<div class="h_icon">
 		<ul class="icon1 sub-icon1">
-			<li><a class="active-icon c1" href="#"><i>$300</i></a>
-				<ul class="sub-icon1 list">
-					<li><h3>shopping cart empty</h3><a href=""></a></li>
-					<li><p>if items in your wishlit are missing, <a href="contact.html">contact us</a> to view them</p></li>
-				</ul>
+				<li><a class="active-icon c1" href="/shoping-cart"></a>
+			<% if(session.cart ) { %>
+					<b color=black ><%= session.cart.totalQty %></b>
+						
+						<%}else { %>
+						0 
+						<% } %>
+						<% if(session.cart ) { %>
+					<h4 color=black ><%= session.cart.totalPrice %>₹</h4>
+						
+						<%}else { %>
+						0 ₹ 
+						<% } %>
+					
 			</li>
 		</ul>
 		</div>
@@ -122,9 +131,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   </div>
   <div class="level-item has-text-centered">
     <div>
-	<span>	<a href="/reduce/<%= product.item._id %>" > - </a></span>
+	<span>	<a class="title" href="/reduce/<%= product.item._id %>" > - </a></span>
       <p class="title"><%= product.qty %></p>
-    
+    <span>	<a class="title" href="/add-to-cart/<%= product.item._id %>" > + </a></span>
     </div>
   </div>
   <div class="level-item has-text-centered">
@@ -152,10 +161,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </nav><hr>
 <section class="container">
 	<div class="is-pulled-right">
-		<a class="button is-medium">
+		<a class="button is-medium" href="/">
   Continue to Shop
 </a>
-<a class="button is-primary is-medium">
+<a class="button is-primary is-medium" href="/checkout">
  Proceed to checkout
 </a>
 	</div>
