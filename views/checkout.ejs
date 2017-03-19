@@ -101,33 +101,38 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       <br/>
 </section>
 
+
+
 <section class="container">
+
+
  <div class="">
 <div class="is-12">
+<h3>Your Total Amount is : <%= total %></h3>
+<form action="/checkout" method="POST" >
       <label class="label">Name</label>
 <p class="control">
-  <input class="input" type="text" placeholder="Text input">
+  <input class="input" type="text" name="name" placeholder="Text input">
 </p> <label class="label">Mobile No</label>
 <p class="control">
-  <input class="input" type="text" placeholder="Text input">
-</p> <label class="label">Street name</label>
-<p class="control">
-  <input class="input" type="text" placeholder="Text input">
+  <input class="input" type="text" name="mobile"  placeholder="Text input">
 </p><label class="label">Landmark</label>
 <p class="control">
-  <input class="input" type="text" placeholder="Text input">
+  <input class="input" type="text" name="landmark" placeholder="Text input">
 </p>
 <label class="label">Address</label>
 <p class="control">
-  <textarea class="textarea" placeholder="Textarea"></textarea>
+  <textarea class="textarea" name="address" placeholder="Textarea"></textarea>
 </p>
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
 <div class="control is-grouped">
   <p class="control">
-    <button class="button is-primary">Submit</button>
+    <button type="submit" class="button is-primary">Submit</button>
   </p>
   <p class="control">
     <button class="button is-link">Cancel</button>
   </p>
+	</form>
 </div>
 </div>
     </div>

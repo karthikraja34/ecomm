@@ -42,7 +42,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(function(req, res, next) {
 
     app.locals.session = req.session;
-    console.log(session);
+
 
     app.locals.logi = req.isAuthenticated();
     //  var username = req.session.user && req.session.user.username ? req.session.user.username : null;

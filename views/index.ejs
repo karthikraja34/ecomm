@@ -34,7 +34,11 @@
 			</div>
         </div>
 
-
+<div class="wrap">
+<div class="alert" <% if(noMessage){ %> hidden <% } %> >
+<%= successmsg %>
+</div>
+</div>
 
 <!----start-cursual---->
 <div class="wrap">
@@ -133,13 +137,13 @@
   	<div class="grid1_of_3">
 				<a href="details.html">
 					<img src=" <%= product.imagePath %>" alt=""/>
-					< h3><%= product.title %></h3>
+					<h3><%= product.title %></h3>
 					<div class="price">
-						<h4><%= product.price %></h4><br/>
+						<h4><%= product.price %></h4>
 
 					</div>
-					<a href="/add-to-cart/<%= product._id %>">ADD TO CART</a>
-					<span class="b_btm"></span>
+					<a class="btn is-primary" href="/add-to-cart/<%= product._id %>">ADD TO CART</a>
+					<span class="b_btm"></span><br/>
 				</a>
 			</div>
 
