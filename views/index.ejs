@@ -44,7 +44,7 @@
 <div class="wrap">
 <!----start-img-cursual---->
 	<div id="owl-demo" class="owl-carousel">
-		<div class="item" onclick="location.href='details.html';">
+		<div class="item" onclick="location.href='/details';">
 			<div class="cau_left">
 				<img class="lazyOwl" data-src="images/c1.jpg" alt="Lazy Owl Image">
 			</div>
@@ -135,8 +135,8 @@
    <% } %>
 
   	<div class="grid1_of_3">
-				<a href="details.html">
-					<img src=" <%= product.imagePath %>" alt=""/>
+				<a href="/details/<%= product._id %>"> 					
+				<img src=" <%= product.imagePath %>" alt=""/>
 					<h3><%= product.title %></h3>
 					<div class="price">
 						<h4><%= product.price %></h4>

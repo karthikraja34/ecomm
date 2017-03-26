@@ -4,7 +4,7 @@ var csrf = require('csurf');
 
 var csrfProtection = csrf();
 router.use(csrfProtection);
-var passport = require('passport')
+var passport = require('passport');
 var Product = require('../models/product');
 var Cart = require('../models/cart');
 var Order = require('../models/orders');
@@ -17,6 +17,28 @@ router.get('/', function(req, res, next) {
         res.render('index', { title: 'Express', products: docs, successmsg: successMsg, noMessage: !successMsg });
     });
 
+});
+
+router.get('/details/:val', function(req, res, next) {
+    // var productId = req.params.val;
+    // express.static.send(req, res, next, {
+    //     root: __dirname + "/public",
+    //     path: req.url,
+    //     getOnly: true,
+    //     callback: function(err) {
+    //         console.log(err);
+    //         var code = err.status || 404,
+    //             msg = errMsgs["" + code] || "All is not right in the world";
+    //         res.render("error", { code: code, msg: msg, layout:  false});
+    // }
+    // });
+    Product.findById(req.params.val, function(err, product) {
+        if (err) {
+            return res.redirect('/');
+        } else {
+            res.render("details", { blog: product });
+        }
+    });
 });
 
 // User routes
@@ -74,7 +96,7 @@ router.get('/profile', isLoggedin, function(req, res, next) {
 router.get('/logout', isLoggedin, function(req, res, next) {
     req.logout();
     res.redirect('/');
-})
+});
 
 //cart
 router.get('/add-to-cart/:id', function(req, res, next) {
